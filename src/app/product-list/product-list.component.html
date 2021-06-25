@@ -1,0 +1,36 @@
+<h2>Products</h2>
+
+<!-- ngFor repeats for each product in list-->
+<div *ngFor="let product of products">
+
+  <!-- {{}} -> angular's interpolation syntax. Renders the property value as text-->
+  <h3>
+    <!-- allows to show details and name of produc when hovering over-->
+    <a [title]="product.name + ' details' " [routerLink]="['/products', product.id]">
+      {{product.name}}
+    </a>
+  </h3>
+  <!--this prints the product description under each product-->
+  <p *ngIf="product.description">
+    Description: {{product.description}}
+  </p>
+
+  <!--created a share button for each product. Alert is also created when share is clicked!-->
+  <button (click)="share()">
+    Share
+  </button>
+
+  <!--links the products and product alerts together-->
+  <app-product-alerts
+    [product] = "product"
+    (notify) = "onNotify()">
+</app-product-alerts>
+
+</div>
+
+
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+-->
